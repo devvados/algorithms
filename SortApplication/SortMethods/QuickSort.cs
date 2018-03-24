@@ -25,40 +25,6 @@ namespace SortApplication
             Recs = new List<Record>();
         }
 
-        public void SortRecursive(int low, int high)
-        {
-            if (high > low)
-            {
-                int partitionIndex = Partition(Recs, low, high);
-                SortRecursive(low, partitionIndex - 1);
-                SortRecursive(partitionIndex + 1, high);
-            }
-        }
-
-        private int Partition(List<Record> rec, int low, int high)
-        {
-            int pivot = rec[high].Key;
-            int i = low - 1;
-
-            for (int j = low; j < high; j++)
-            {
-                if (rec[j].Key <= pivot)
-                {
-                    i++;
-                    Swap(rec, i, j);
-                }
-            }
-            Swap(rec, i + 1, high);
-            return i + 1;
-        }
-
-        private void Swap(List<Record> rec, int i, int j)
-        {
-            var temp = rec[i];
-            rec[i] = rec[j];
-            rec[j] = temp;
-        }
-
         public void Sort()
         {
             Stack stack = new Stack();
@@ -117,6 +83,40 @@ namespace SortApplication
                     stack.Push(rightIndexOfSubset);
                 }
             }
+        }
+
+        public void SortRecursive(int low, int high)
+        {
+            if (high > low)
+            {
+                int partitionIndex = Partition(Recs, low, high);
+                SortRecursive(low, partitionIndex - 1);
+                SortRecursive(partitionIndex + 1, high);
+            }
+        }
+
+        private int Partition(List<Record> rec, int low, int high)
+        {
+            int pivot = rec[high].Key;
+            int i = low - 1;
+
+            for (int j = low; j < high; j++)
+            {
+                if (rec[j].Key <= pivot)
+                {
+                    i++;
+                    Swap(rec, i, j);
+                }
+            }
+            Swap(rec, i + 1, high);
+            return i + 1;
+        }
+
+        private void Swap(List<Record> rec, int i, int j)
+        {
+            var temp = rec[i];
+            rec[i] = rec[j];
+            rec[j] = temp;
         }
     }
 }
