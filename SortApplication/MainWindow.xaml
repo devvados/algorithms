@@ -1,0 +1,72 @@
+﻿<Window x:Class="SortApplication.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:local="clr-namespace:SortApplication"
+        mc:Ignorable="d"
+        Title="Sortings" Height="450" Width="700" ResizeMode="NoResize">
+    <Grid x:Name="GridMain"> 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Menu x:Name="Menu" Height="30" Grid.Row="0">
+            <MenuItem x:Name="MIAbout" Header="About" Height="30"/>
+        </Menu>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid x:Name="GridSortControls" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="4*"/>
+                </Grid.RowDefinitions>
+                <Grid x:Name="GridSortMethods" Grid.Row="0" Margin="15,10,15,10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Label Content="Select sorting method" Grid.Row="0"/>
+                    <ComboBox x:Name="CBSortMethods" Grid.Row="1" SelectionChanged="CBSortTypes_SelectionChanged">
+                        <ComboBoxItem>Bubble sort</ComboBoxItem>
+                        <ComboBoxItem>Selection sort</ComboBoxItem>
+                        <ComboBoxItem>Quicksort (Hoare)</ComboBoxItem>
+                        <ComboBoxItem>Count of comparisons sort</ComboBoxItem>
+                        <ComboBoxItem>Shell sort</ComboBoxItem>
+                        <ComboBoxItem>Shaker sort</ComboBoxItem>
+                        <ComboBoxItem>Insertion sort</ComboBoxItem>
+                    </ComboBox>
+                </Grid>
+                <Grid x:Name="GridRecordViews" Grid.Row="1" Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <ListView x:Name="LVBefore" Grid.Column="0" Margin="5" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Key" Width="100" DisplayMemberBinding="{Binding Key}"/>
+                                <GridViewColumn Header="Info" Width="100" DisplayMemberBinding="{Binding Info}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <ListView x:Name="LVAfter" Grid.Column="1" Margin="5" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Key" Width="100" DisplayMemberBinding="{Binding Key}"/>
+                                <GridViewColumn Header="Info" Width="100" DisplayMemberBinding="{Binding Info}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+            </Grid>
+            <RichTextBox Grid.Column="1" Margin="15">
+                
+            </RichTextBox>
+        </Grid>
+    </Grid>
+</Window>
